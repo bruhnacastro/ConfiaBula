@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Favoritos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="left"></div>
+
+        <div class="center">
+            ConfiaBula 💊
+        </div>
+
+        <div class="right"></div>
+    </div>
+
+    <!-- CONTEÚDO -->
+    <div class="conteudo">
+        <h2 class="titulo">Meus Favoritos ❤️</h2>
+
+        <div class="lista">
+
+            {% if medicamentos|length == 0 %}
+                <p>Você ainda não tem favoritos 😢</p>
+            {% else %}
+
+                {% for med in medicamentos %}
+                <div class="item">
+
+                    <div>
+                        <strong>💊 {{ med.nome }}</strong><br>
+                        <small>{{ med.indicacao }}</small>
+                    </div>
+
+                    <div>
+                        <a href="{{ url_for('detalhe_medicamento', id=med.id) }}">
+                            <button>Ver bula</button>
+                        </a>
+
+                        <a href="{{ url_for('remover_favorito', med_id=med.id) }}">
+                            <button>Excluir</button>
+                        </a>
+                    </div>
+
+                </div>
+                {% endfor %}
+
+            {% endif %}
+
+        </div>
+    </div>
+
+    <!-- RODAPÉ -->
+    <div class="rodape">
+        <button onclick="window.location.href='{{ url_for('index') }}'">🏠 Página inicial</button>
+    </div>
+
+</div>
+
+</body>
+</html>

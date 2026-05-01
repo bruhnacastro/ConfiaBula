@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConfiaBula</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <div class="app">
+
+    <!-- HEADER -->
+    <div class="header">
+    <div class="left"></div>
+
+    <div class="center">
+        ConfiaBula 💊
+    </div>
+
+</div>
+
+    <!-- ACESSIBILIDADE -->
+    <div class="acessibilidade">
+        <span>Fonte:</span>
+        <button onclick="aumentarFonte()">A+</button>
+        <button onclick="diminuirFonte()">A-</button>
+    </div>
+
+    <!-- CONTEÚDO -->
+    <div class="conteudo">
+
+        <p class="titulo">
+            Encontre informações sobre medicamentos
+        </p>
+
+        <!-- FORM (🔥 melhoria importante) -->
+        <form method="GET" action="{{ url_for('buscar') }}">
+    <input type="text" name="nome" placeholder="Digite o nome do medicamento" required>
+
+    <button type="submit" class="btn-primario">
+        Pesquisar
+    </button>
+</form>
+
+        <h3>Medicamentos</h3>
+
+<div class="lista">
+  {% for medicamento in medicamentos %}
+    <a href="{{ url_for('detalhe_medicamento', id=medicamento.id) }}">
+        {{ medicamento.nome }}
+    </a>
+    <br>
+{% endfor %}
+    </div>
+
+    <!-- RODAPÉ -->
+    <div class="rodape">
+        <button onclick="window.location.href='{{ url_for('login') }}'">
+    Login
+</button>
+        <button onclick="window.location.href='{{ url_for('favoritos') }}'">
+    Meus favoritos
+</button>
+            </div>
+
+</div>
+
+<script>
+
+
+function irParaLogin() {
+    window.location.href = "/login";
+}
+
+
+
+
+</script>
+
+<script>
+let tamanhoFonte = 100;
+
+function aumentarFonte() {
+    tamanhoFonte += 10;
+    document.documentElement.style.fontSize = tamanhoFonte + "%";
+}
+
+function diminuirFonte() {
+    tamanhoFonte -= 10;
+    document.documentElement.style.fontSize = tamanhoFonte + "%";
+}
+</script>
+
+<script>
+
+
+    </script>
+
+    </div>
+    </body>
+</html>

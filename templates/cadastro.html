@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConfiaBula - Cadastro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="app">
+
+    <!-- HEADER -->
+    <div class="header">
+    <div class="left"></div>
+
+    <div class="center">
+        ConfiaBula 💊
+    </div>
+    </div>
+
+
+
+
+
+    <!-- ACESSIBILIDADE -->
+    <div class="acessibilidade">
+        <span>Fonte:</span>
+        <button onclick="diminuirFonte()">A-</button>
+        <button onclick="aumentarFonte()">A+</button>
+    </div>
+
+    <!-- CONTEÚDO -->
+    <div class="conteudo">
+
+        <h2 class="titulo">Faça seu Cadastro</h2>
+
+        <form method="POST">
+
+    <input type="text" name="nome" placeholder="Nome completo" required>
+
+    <input type="email" name="email" placeholder="Email" required>
+
+    <input type="password" name="senha" placeholder="Senha" required>
+
+    <button type="submit" class="btn-primario">
+        Cadastrar
+    </button>
+
+</form>
+
+    </div>
+
+    <!-- CARD INFERIOR -->
+    <div class="card-cadastro">
+        <p class="texto-login">Já tenho cadastro!</p>
+
+        <button class="btn-primario" onclick="window.location.href='/index'">
+        Voltar para tela inicial
+        </button>
+    </div>
+
+</div>
+
+<!-- JS ACESSIBILIDADE -->
+<script>
+let tamanhoFonte = 100;
+
+function aumentarFonte() {
+    tamanhoFonte += 10;
+    document.documentElement.style.fontSize = tamanhoFonte + "%";
+}
+
+function diminuirFonte() {
+    tamanhoFonte -= 10;
+    document.documentElement.style.fontSize = tamanhoFonte + "%";
+
+
+}
+
+function cadastrarUsuario(event) {
+    event.preventDefault();
+
+    let nome = document.getElementById("nome").value;
+    let email = document.getElementById("email").value;
+    let senha = document.getElementById("senha").value;
+
+    // 🔥 salva no localStorage
+    localStorage.setItem("usuarioCadastrado", JSON.stringify({
+        nome: nome,
+        email: email,
+        senha: senha
+    }));
+
+    alert("Cadastro realizado com sucesso!");
+
+    // 🔗 vai pro login
+    window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>

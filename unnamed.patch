@@ -1,0 +1,12 @@
+Index: templates/Procfile
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/templates/Procfile b/templates/Procfile
+new file mode 100644
+--- /dev/null
++++ b/templates/Procfile
+@@ -0,0 +1,1 @@
++web: gunicorn app:app
+\ No newline at end of file

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="app">
+
+    <!-- HEADER -->
+    <div class="header">
+    <div class="left"></div>
+
+    <div class="center">
+        ConfiaBula 💊
+    </div>
+</div>
+
+    <!-- ACESSIBILIDADE -->
+    <div class="acessibilidade">
+        <span>Fonte:</span>
+        <button onclick="aumentarFonte()">A+</button>
+        <button onclick="diminuirFonte()">A-</button>
+    </div>
+
+    <!-- CONTEÚDO -->
+    <div class="conteudo">
+
+        <h2 class="titulo">Login</h2>
+
+        <!-- FORM (🔥 importante) -->
+        <form method="POST">
+
+            <input type="email" name="email" placeholder="Digite seu e-mail" required>
+
+            <input type="password" name="senha" placeholder="Digite sua senha" required>
+
+            <button type="submit" class="btn-primario">
+                Entrar
+            </button>
+
+        </form>
+
+        <p style="margin-top: 15px;">Não tem conta?</p>
+        <a href="{{ url_for('cadastro') }}">Cadastrar</a>
+
+
+<!-- ACESSIBILIDADE -->
+<script>
+let tamanhoFonte = localStorage.getItem("tamanhoFonte") || 100;
+
+document.documentElement.style.fontSize = tamanhoFonte + "%";
+
+function aumentarFonte() {
+    tamanhoFonte = parseInt(tamanhoFonte) + 10;
+    document.documentElement.style.fontSize = tamanhoFonte + "%";
+    localStorage.setItem("tamanhoFonte", tamanhoFonte);
+}
+
+function diminuirFonte() {
+    tamanhoFonte = parseInt(tamanhoFonte) - 10;
+    document.documentElement.style.fontSize = tamanhoFonte + "%";
+    localStorage.setItem("tamanhoFonte", tamanhoFonte);
+}
+
+
+</script>
+
+</body>
+</html>

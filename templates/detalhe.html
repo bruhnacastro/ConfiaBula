@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConfiaBula - Medicamento</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+ <div class="app">
+
+    <!-- HEADER -->
+    <div class="header">
+    <div class="left"></div>
+
+    <div class="center">
+        ConfiaBula 💊
+    </div>
+
+</div>
+
+    <!-- ACESSIBILIDADE -->
+    <div class="acessibilidade">
+        <span>Fonte:</span>
+        <button onclick="aumentarFonte()">A+</button>
+        <button onclick="diminuirFonte()">A-</button>
+    </div>
+
+    <!-- CONTEÚDO -->
+    <main class="medicamento-container">
+
+    <h2 class="nome-medicamento">
+        {{ medicamento.nome }}
+    </h2>
+
+    <p class="principio">
+        <strong>Laboratório:</strong> {{ medicamento.laboratorio }}
+    </p>
+
+    <section class="card">
+        <h3>Indicação</h3>
+        <p>{{ medicamento.indicacao }}</p>
+    </section>
+
+    <section class="card">
+        <h3>Resumo</h3>
+        <p>{{ medicamento.resumo }}</p>
+    </section>
+
+    <section class="card">
+        <h3>Bula</h3>
+        <a href="{{ medicamento.bula_pdf }}" target="_blank">
+            Abrir bula completa
+        </a>
+    </section>
+
+    <button type="button" class="btn-favorito" onclick="favoritar()">
+    ❤️ Favoritar
+</button>
+
+    <button class="btn-voltar" onclick="voltar()">← Voltar</button>
+
+
+</main>
+
+</div>
+
+<script>
+function voltar() {
+    window.history.back();
+}
+
+</script>
+
+ <script>
+function favoritar() {
+    window.location.href = "/favoritar/{{ medicamento.id }}";
+}
+</script>
+
+
+    <script>
+let tamanhoFonte = 100;
+
+function aumentarFonte() {
+    tamanhoFonte += 10;
+    document.documentElement.style.fontSize = tamanhoFonte + "%";
+}
+
+function diminuirFonte() {
+    tamanhoFonte -= 10;
+    document.documentElement.style.fontSize = tamanhoFonte + "%";
+}
+</script>
+
+</body>
+</html>
